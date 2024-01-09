@@ -10,7 +10,6 @@ pipeline {
         stage('Code checkOut') {
             steps {
                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-                sh 'mvn test'
             }
         }
 
