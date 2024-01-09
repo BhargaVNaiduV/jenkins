@@ -1,21 +1,15 @@
 pipeline {
     agent any
     }
+tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven '3.9.0'
+    }
     stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
         stage('Test') {
             steps {
+                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
                 sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
             }
         }
     }
-}
