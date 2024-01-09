@@ -6,9 +6,24 @@ tools {
         maven '3.9.0'
     }
     stages {
+         stage('Code checkOut'){
+             steps {
+                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                sh 'mvn test'
+            }
+         }       
+         stage('Comiple ){
+            echo '--- Step 1: Cleaning ---'
+                sh 'mvn clean'
+
+                echo '--- Step 2: Updating Dependencies ---'
+                sh 'mvn dependency:resolve'
+
+                echo '--- Step 3: Compiling ---'
+                sh 'mvn compile'
+        }
         stage('Test') {
             steps {
-                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
                 sh 'mvn test'
             }
         }
