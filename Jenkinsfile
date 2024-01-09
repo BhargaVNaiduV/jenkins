@@ -28,6 +28,7 @@ pipeline {
 
         stage('Test') {
             steps {
+                sh 'mvn -B -ntp -Dmaven.test.failure.ignore verify'
                 sh 'mvn test'
             }
         }
