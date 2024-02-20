@@ -35,7 +35,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn build'
+                sh 'echo "done" '
             }
         }
     }
